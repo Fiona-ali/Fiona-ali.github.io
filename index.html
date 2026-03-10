@@ -595,15 +595,39 @@ h2 span{color:var(--cyan)}
   box-shadow:0 0 20px rgba(0,255,231,.06);
 }
 .clink:hover::before{transform:scaleY(1)}
+
+/* colour-coded left bars for platform links */
+.clink.leet::before{background:#ffa116}
+.clink.leet:hover{border-color:rgba(255,161,22,.3);box-shadow:0 0 20px rgba(255,161,22,.06)}
+.clink.gfg::before{background:#2f8d46}
+.clink.gfg:hover{border-color:rgba(47,141,70,.3);box-shadow:0 0 20px rgba(47,141,70,.06)}
+.clink.hr::before{background:#00ea64}
+.clink.hr:hover{border-color:rgba(0,234,100,.3);box-shadow:0 0 20px rgba(0,234,100,.06)}
+
 .ctype{
   font-family:'Press Start 2P',monospace;
   font-size:.38rem;color:var(--muted);
   letter-spacing:.1em;text-transform:uppercase;
-  width:60px;flex-shrink:0;
+  width:80px;flex-shrink:0;
 }
 .cval{font-size:.75rem;color:var(--text)}
 .carr{margin-left:auto;color:var(--muted);transition:color .2s,transform .2s}
 .clink:hover .carr{color:var(--cyan);transform:translateX(3px)}
+.clink.leet:hover .carr{color:#ffa116}
+.clink.gfg:hover .carr{color:#2f8d46}
+.clink.hr:hover .carr{color:#00ea64}
+
+/* platform icon badges */
+.cicon{
+  width:28px;height:28px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.75rem;
+  border-radius:4px;
+  flex-shrink:0;
+}
+.cicon.lc{background:rgba(255,161,22,0.12);border:1px solid rgba(255,161,22,0.2);color:#ffa116}
+.cicon.gg{background:rgba(47,141,70,0.12);border:1px solid rgba(47,141,70,0.2);color:#2f8d46}
+.cicon.hk{background:rgba(0,234,100,0.12);border:1px solid rgba(0,234,100,0.2);color:#00ea64}
 
 /* ─── FOOTER ────────────────────────────────── */
 footer{
@@ -687,7 +711,6 @@ footer{
 
   <div class="hero-inner">
     <div>
-      <!-- XP bar -->
       <div class="xp-bar-wrap">
         <div class="level-badge">LVL 02</div>
         <div class="xp-track"><div class="xp-fill"></div></div>
@@ -705,7 +728,6 @@ footer{
       </div>
     </div>
 
-    <!-- Character stat card -->
     <div class="hero-card rv">
       <div class="hcard-title">// PLAYER STATS</div>
       <div class="stat-row">
@@ -771,7 +793,6 @@ footer{
   <h2>SELECTED<br><span>PROJECTS</span></h2>
   <div class="proj-grid">
 
-    <!-- FEATURED -->
     <div class="pcard feat rv">
       <div class="pcard-body">
         <div class="pcard-bar"></div>
@@ -808,7 +829,6 @@ footer{
       </div>
     </div>
 
-    <!-- PAC-MAN -->
     <div class="pcard pink-bar rv">
       <div class="pcard-bar"></div>
       <div class="pcard-body">
@@ -830,7 +850,6 @@ footer{
       </div>
     </div>
 
-    <!-- ML PIPELINE -->
     <div class="pcard yellow-bar rv">
       <div class="pcard-bar"></div>
       <div class="pcard-body">
@@ -899,26 +918,55 @@ footer{
     <h2>LET'S<br><span>BUILD</span></h2>
     <p class="contact-sub">Open to internships, collabs, and anything that involves hard problems and good people.</p>
     <div class="clinks rv">
+
       <a href="mailto:fionaali2006@gmail.com" class="clink">
         <span class="ctype">EMAIL</span>
         <span class="cval">fionaali2006@gmail.com</span>
         <span class="carr">→</span>
       </a>
-      <a href="https://www.linkedin.com/in/fiona-ali-shaik-078087298/" target="_blank" class="clink">
+
+      <a href="https://www.linkedin.com/in/fiona-ali-shaik-078087298/" target="_blank" rel="noopener" class="clink">
         <span class="ctype">LINKEDIN</span>
         <span class="cval">fiona-ali-shaik-078087298</span>
         <span class="carr">→</span>
       </a>
-      <a href="https://github.com/Fiona-ali" target="_blank" class="clink">
+
+      <a href="https://github.com/Fiona-ali" target="_blank" rel="noopener" class="clink">
         <span class="ctype">GITHUB</span>
         <span class="cval">github.com/Fiona-ali</span>
         <span class="carr">→</span>
       </a>
-      <a href="https://x.com/yukoo110" target="_blank" class="clink">
+
+      <a href="https://x.com/yukoo110" target="_blank" rel="noopener" class="clink">
         <span class="ctype">X</span>
         <span class="cval">x.com/yukoo110</span>
         <span class="carr">→</span>
       </a>
+
+      <!-- ── NEW: LeetCode ── -->
+      <a href="https://leetcode.com/u/FionaAli18/" target="_blank" rel="noopener" class="clink leet">
+        <span class="cicon lc">LC</span>
+        <span class="ctype">LEETCODE</span>
+        <span class="cval">FionaAli18</span>
+        <span class="carr">→</span>
+      </a>
+
+      <!-- ── NEW: GeeksforGeeks ── -->
+      <a href="https://www.geeksforgeeks.org/profile/fionaald97o" target="_blank" rel="noopener" class="clink gfg">
+        <span class="cicon gg">GG</span>
+        <span class="ctype">GFG</span>
+        <span class="cval">fionaald97o</span>
+        <span class="carr">→</span>
+      </a>
+
+      <!-- ── NEW: HackerRank ── -->
+      <a href="https://www.hackerrank.com/profile/Fiona_Ali" target="_blank" rel="noopener" class="clink hr">
+        <span class="cicon hk">HR</span>
+        <span class="ctype">HACKERRANK</span>
+        <span class="cval">Fiona_Ali</span>
+        <span class="carr">→</span>
+      </a>
+
     </div>
   </div>
 </section>
@@ -930,32 +978,23 @@ footer{
 </footer>
 
 <script>
-// ── CURSOR — only on devices with a real pointer ──────────────────
 (function(){
-  // Only run on non-touch devices
   if(!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
   var dot  = document.getElementById('cur-dot');
   var ring = document.getElementById('cur-ring');
   var mx=0, my=0, rx=0, ry=0;
-
-  // Use transform instead of left/top — much faster, no stuck issue
   document.addEventListener('mousemove', function(e){
-    mx = e.clientX;
-    my = e.clientY;
+    mx = e.clientX; my = e.clientY;
     dot.style.transform = 'translate(' + (mx-3) + 'px,' + (my-3) + 'px)';
   });
-
   (function loop(){
     rx += (mx - rx - 14) * 0.13;
     ry += (my - ry - 14) * 0.13;
     ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
     requestAnimationFrame(loop);
   })();
-
   document.addEventListener('mouseenter', function(){ dot.style.opacity='1'; ring.style.opacity='1'; });
   document.addEventListener('mouseleave', function(){ dot.style.opacity='0'; ring.style.opacity='0'; });
-
   var hEls = document.querySelectorAll('a,button,.pcard,.pill');
   hEls.forEach(function(el){
     el.addEventListener('mouseenter', function(){
@@ -975,28 +1014,23 @@ footer{
   });
 })();
 
-// ── NAV SCROLL ────────────────────────────────────────────────────
 window.addEventListener('scroll', function(){
   document.getElementById('nav').classList.toggle('stuck', window.scrollY > 40);
 });
 
-// ── HAMBURGER ─────────────────────────────────────────────────────
 var ham     = document.getElementById('ham');
 var mobMenu = document.getElementById('mobMenu');
-
 ham.addEventListener('click', function(){
   ham.classList.toggle('open');
   mobMenu.classList.toggle('open');
   document.body.style.overflow = mobMenu.classList.contains('open') ? 'hidden' : '';
 });
-
 function closeMob(){
   ham.classList.remove('open');
   mobMenu.classList.remove('open');
   document.body.style.overflow = '';
 }
 
-// ── SCROLL REVEAL ─────────────────────────────────────────────────
 var obs = new IntersectionObserver(function(entries){
   entries.forEach(function(e){
     if(e.isIntersecting){ e.target.classList.add('show'); obs.unobserve(e.target); }
