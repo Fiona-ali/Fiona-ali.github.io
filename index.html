@@ -672,6 +672,31 @@ footer{
   .hero-sub{font-size:.76rem}
   .btn{font-size:.4rem;padding:.8rem 1.1rem}
 }
+
+/* ─── INTERACTIVE TASK QUEUE DEMO ─────────── */
+.task-demo{
+  max-width:900px;margin:0 auto;background:var(--panel);
+  border:1px solid var(--border);padding:2rem;position:relative;
+}
+.task-demo::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purple))}
+.task-demo-copy{font-size:.78rem;color:#6a8faa;line-height:1.8;margin:-1.5rem 0 1.5rem}
+.task-form{display:grid;grid-template-columns:minmax(0,1fr) 150px auto;gap:.65rem;margin-bottom:1rem}
+.task-form input,.task-form select{
+  min-width:0;background:#05080f;border:1px solid var(--border);color:var(--text);
+  padding:.85rem;font:inherit;outline:none
+}
+.task-form input:focus,.task-form select:focus{border-color:var(--cyan);box-shadow:0 0 0 2px rgba(0,255,231,.12)}
+.task-form .btn{white-space:nowrap}
+.task-list{list-style:none;display:grid;gap:.55rem}
+.task-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:center;gap:.7rem;background:var(--panel2);border:1px solid var(--border);padding:.75rem}
+.task-row input[type=checkbox]{accent-color:var(--cyan);width:1rem;height:1rem}
+.task-label{font-size:.78rem;overflow-wrap:anywhere}
+.task-row.done .task-label{text-decoration:line-through;color:var(--muted)}
+.task-priority{font: .4rem 'Press Start 2P',monospace;color:var(--yellow);text-transform:uppercase}
+.task-delete{background:transparent;border:1px solid rgba(255,45,120,.35);color:var(--pink);padding:.45rem .6rem;cursor:pointer;font: .4rem 'Press Start 2P',monospace}
+.task-status{font-size:.65rem;color:var(--muted);margin-top:.8rem}
+@media(max-width:640px){.task-form{grid-template-columns:1fr}.task-demo{padding:1.2rem}.task-row{grid-template-columns:auto minmax(0,1fr) auto}.task-priority{grid-column:2}.task-delete{grid-column:3;grid-row:1 / span 2}}
+
 </style>
 </head>
 <body>
@@ -684,6 +709,7 @@ footer{
 <div class="mob-menu" id="mobMenu">
   <a href="#about"   onclick="closeMob()">About</a>
   <a href="#projects" onclick="closeMob()">Work</a>
+  <a href="#demo" onclick="closeMob()">Demo</a>
   <a href="#skills"  onclick="closeMob()">Skills</a>
   <a href="#contact" onclick="closeMob()">Contact</a>
 </div>
@@ -694,6 +720,7 @@ footer{
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Work</a></li>
+    <li><a href="#demo">Demo</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -873,6 +900,28 @@ footer{
   </div>
 </section>
 
+
+<!-- INTERACTIVE DEMO -->
+<section id="demo">
+  <div class="sec-eyebrow"><div class="pixel-tag">LIVE DEMO</div><div class="sec-line"></div></div>
+  <h2>FOCUS<br><span>TASK QUEUE</span></h2>
+  <div class="task-demo rv">
+    <p class="task-demo-copy">Add a sample task, choose its priority, then mark it done. This mini demo stores its list only in this browser.</p>
+    <form class="task-form" id="taskForm">
+      <label for="taskInput" class="sr-only">Task name</label>
+      <input id="taskInput" name="task" type="text" maxlength="80" placeholder="e.g. Review a project README" required>
+      <label for="taskPriority" class="sr-only">Priority</label>
+      <select id="taskPriority" name="priority" aria-label="Task priority">
+        <option value="normal">Normal</option>
+        <option value="high">High</option>
+      </select>
+      <button class="btn btn-primary" type="submit">ADD TASK</button>
+    </form>
+    <ul class="task-list" id="taskList" aria-label="Your tasks"></ul>
+    <p class="task-status" id="taskStatus" aria-live="polite">Your tasks are saved in this browser only.</p>
+  </div>
+</section>
+
 <!-- SKILLS -->
 <section id="skills">
   <div class="sec-eyebrow"><div class="pixel-tag">SKILLS</div><div class="sec-line"></div></div>
@@ -1048,6 +1097,51 @@ var obs = new IntersectionObserver(function(entries){
   });
 }, {threshold: 0.07});
 document.querySelectorAll('.rv').forEach(function(el){ obs.observe(el); });
+
+/* One client-side feature: a small task queue saved in this browser. */
+(function(){
+  var STORAGE_KEY='fiona-portfolio-task-queue-v1';
+  var form=document.getElementById('taskForm');
+  var input=document.getElementById('taskInput');
+  var priority=document.getElementById('taskPriority');
+  var list=document.getElementById('taskList');
+  var status=document.getElementById('taskStatus');
+  if(!form||!input||!priority||!list||!status) return;
+  var tasks=[];
+  try{tasks=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');if(!Array.isArray(tasks))tasks=[];}catch(e){tasks=[];}
+  function save(){
+    try{localStorage.setItem(STORAGE_KEY,JSON.stringify(tasks));status.textContent='Saved in this browser only · '+tasks.filter(function(t){return !t.done;}).length+' open';}
+    catch(e){status.textContent='This browser did not allow local saving; the list will work until you leave this page.';}
+  }
+  function render(){
+    list.replaceChildren();
+    tasks.forEach(function(task){
+      var row=document.createElement('li');row.className='task-row'+(task.done?' done':'');row.dataset.id=String(task.id);
+      var check=document.createElement('input');check.type='checkbox';check.checked=!!task.done;check.setAttribute('aria-label','Mark '+task.text+' as complete');
+      var label=document.createElement('span');label.className='task-label';label.textContent=task.text;
+      var badge=document.createElement('span');badge.className='task-priority';badge.textContent=task.priority;
+      var remove=document.createElement('button');remove.type='button';remove.className='task-delete';remove.textContent='REMOVE';remove.setAttribute('aria-label','Remove '+task.text);
+      row.append(check,label,badge,remove);list.appendChild(row);
+    });
+    save();
+  }
+  form.addEventListener('submit',function(event){
+    event.preventDefault();var text=input.value.trim();if(!text)return;
+    tasks.push({id:Date.now()+Math.random(),text:text,priority:priority.value,done:false});
+    form.reset();render();input.focus();
+  });
+  list.addEventListener('change',function(event){
+    if(event.target.type!=='checkbox')return;
+    var row=event.target.closest('[data-id]');var task=tasks.find(function(t){return String(t.id)===row.dataset.id;});
+    if(task){task.done=event.target.checked;render();}
+  });
+  list.addEventListener('click',function(event){
+    if(!event.target.matches('.task-delete'))return;
+    var row=event.target.closest('[data-id]');tasks=tasks.filter(function(t){return String(t.id)!==row.dataset.id;});render();
+  });
+  render();
+})();
+
 </script>
 </body>
 </html>
