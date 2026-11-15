@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05080f">
+<title>Study Notes Coach · Shaik Fiona Ali</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05080f;--panel:#0b1120;--panel2:#101828;--border:#162033;--cyan:#00ffe7;--pink:#ff2d78;--yellow:#ffe600;--purple:#9b5cff;--text:#d4e5f7;--muted:#7290aa}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif;line-height:1.75}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:10;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,255,231,.025) 2px,rgba(0,255,231,.025) 4px)}
+a{color:var(--cyan)}.wrap{width:min(940px,calc(100% - 40px));margin:auto}
+nav{position:sticky;top:0;z-index:5;background:rgba(5,8,15,.94);border-bottom:1px solid var(--border);padding:15px 0}
+nav .wrap{display:flex;justify-content:space-between;gap:20px;align-items:center}
+.logo{font:10px "Press Start 2P",monospace;text-decoration:none;text-shadow:0 0 12px var(--cyan)}
+.navback{font-size:13px;text-decoration:none;color:var(--text)}
+header{padding:76px 0 48px;border-bottom:1px solid var(--border);background:radial-gradient(ellipse at 15% 15%,rgba(0,255,231,.08),transparent 50%)}
+.eyebrow,.label{font:9px "Press Start 2P",monospace;color:var(--cyan);letter-spacing:.1em}
+h1,h2{font-family:"Press Start 2P",monospace;line-height:1.7}h1{font-size:clamp(20px,4vw,34px);max-width:760px;margin:22px 0}h1 span{color:var(--cyan)}h2{font-size:clamp(14px,2.5vw,19px);margin:0 0 20px}
+.lede{max-width:720px;color:#a4b9c9;font-size:17px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}.tag{font-size:12px;padding:3px 9px;border:1px solid var(--border);background:var(--panel);color:#abc1d3}
+main{padding:44px 0 76px}.section{padding:25px 0 32px;border-bottom:1px solid var(--border)}.section p,.section li{color:#a4b9c9}.section ul{padding-left:20px}.section li{margin:8px 0}.callout{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--cyan);padding:18px 20px;color:#b4c9d7;margin-top:18px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.metric{background:var(--panel);border:1px solid var(--border);padding:16px}.metric strong{display:block;color:var(--cyan);font:12px "Press Start 2P",monospace;margin-bottom:10px}.metric span{font-size:13px;color:#a4b9c9}
+footer{border-top:1px solid var(--border);padding:22px 0;color:var(--muted);font-size:12px}
+@media(max-width:650px){header{padding:52px 0 35px}.lede{font-size:15px}.metrics{grid-template-columns:1fr}.wrap{width:min(100% - 28px,940px)}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="index.html">SFA.EXE</a><a class="navback" href="index.html#projects">← Back to selected projects</a></div></nav>
+<header><div class="wrap">
+<div class="eyebrow">FLYRank · AI FLUENCY PROJECT</div>
+<h1>STUDY NOTES<br><span>COACH</span></h1>
+<p class="lede">A private Claude Project designed to help me study from my own course materials, show where an answer came from, and ask before filling gaps with general knowledge.</p>
+<div class="meta"><span class="tag">Claude Project</span><span class="tag">Source-grounded answers</span><span class="tag">Prompt design</span><span class="tag">Three observed runs</span></div>
+</div></header>
+<main class="wrap">
+<section class="section"><div class="label">01 · THE PROBLEM</div><h2>Keep course answers tied to course sources</h2>
+<p>A study helper can sound confident while quietly filling gaps with general knowledge. That makes it hard to tell what the course material actually says. I wanted a coach that treats my uploaded notes as the source of truth, points to the supporting page or section, and says when the material does not contain an answer.</p></section>
+<section class="section"><div class="label">02 · WHAT I DID</div><h2>Designed a careful, read-only study workflow</h2>
+<ul>
+<li>Created a separate Claude Project called <strong>Study Notes Coach</strong> and kept it private.</li>
+<li>Added project instructions that prioritize uploaded course files, require source references where available, prohibit invented facts and citations, and ask me before adding clearly labeled general context when the notes are insufficient.</li>
+<li>Kept the project read-only: it has no external connectors, code execution, or permission to submit assignments, edit repositories, publish, or share files.</li>
+<li>Ran three end-to-end checks: a missing-source guardrail check using the design spec, then two checks grounded in my Prompting Fundamentals course PDF.</li>
+</ul>
+<div class="callout">The first check exposed a source-set gap: the project had its design spec but not yet the course notes needed for a course-grounded answer. I added the course PDF before running the next two checks.</div></section>
+<section class="section"><div class="label">03 · WHAT CAME OF IT</div><h2>Three observed runs; bounded evidence</h2>
+<p>In the missing-source run, the coach cited the relevant design-spec sections and asked one check question. In the two course-note runs, it cited pages 7–8, identified unsupported additions in an example answer (technical decisions and individual contributions), explained how the reusable template checks claims against supplied facts, and ended each response with one check question.</p>
+<div class="metrics">
+<div class="metric"><strong>3 RUNS</strong><span>Observed end-to-end checks across the missing-source and grounded-answer behaviors.</span></div>
+<div class="metric"><strong>1 QUESTION</strong><span>Each checked response ended with one study check question, as instructed.</span></div>
+<div class="metric"><strong>NO IMPACT CLAIM</strong><span>No learner study or measured learning outcome was collected.</span></div>
+</div>
+<div class="callout">This is qualitative evidence from three interactive runs, not proof that all six planned evaluation cases passed. The project remains private, so there is no public live demo or course-file download here.</div></section>
+<section class="section"><div class="label">NEXT ITERATION</div><h2>What I would check next</h2>
+<p>I would run the remaining planned evaluation cases, especially source conflicts and unsupported claims, and record pass/revise outcomes against explicit criteria. I would only report learning impact after collecting feedback or outcome data from actual learners.</p></section>
+<section class="section"><div class="label">PROJECT NOTE</div><p>This case study describes a private Claude Project and the checks recorded in its build log. It does not include the private course materials or the raw screen recording.</p><p><a href="https://github.com/Fiona-ali/Fiona-ali.github.io/blob/main/week-06-impact-project.md">Read the Week 6 case-study plan →</a></p></section>
+</main>
+<footer><div class="wrap">Shaik Fiona Ali · <a href="index.html#projects">Selected projects</a></div></footer>
+</body>
+</html>
