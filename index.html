@@ -686,6 +686,8 @@ footer{
   .task-label{font-size:.95rem}
 }
 
+/* Accessible labels stay available to screen readers without taking layout space. */
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 /* ─── INTERACTIVE TASK QUEUE DEMO ─────────── */
 .task-demo{
   max-width:900px;margin:0 auto;background:var(--panel);
