@@ -18,5 +18,5 @@ Portfolio: https://fiona-ali.github.io/
 - Tested the task demo: add a task, reload and confirm it persisted, mark it complete, then remove it.
 - Confirmed the new Demo navigation link and its form are present on the deployed page.
 
-## Real-phone check still needed
-This browser environment cannot verify behavior on Fiona's physical phone. Before calling the assignment fully verified, open the live URL on a real phone, check the navigation, project cards, task demo, and contact links, and capture one screenshot of the mobile page. That is the only check not completed here. A resized desktop preview would not count as a real-phone check.
+## Real-phone check
+Fiona opened the live portfolio on her phone and confirmed that it works there. The browser-side checks above cover the demo interactions. The image supplied in chat shows the wide desktop layout, so it is not represented here as a phone screenshot.
