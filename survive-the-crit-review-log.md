@@ -6,7 +6,7 @@ Portfolio reviewed: https://fiona-ali.github.io/
 I build browser-based AI/ML projects, with computer vision and subject tracking as my main focus.
 
 ## Review source
-Independent critique prepared in this assistant conversation. This is not a friend or fellow-student review; no human reviewer has been represented as having said these things.
+Independent critique prepared with the assistant in this chat. This is not a friend or fellow-student review; no human reviewer has been represented as having said these things.
 
 ## First-impression feedback
 
@@ -38,4 +38,3 @@ The portfolio's subject-tracking, Pac-Man, and vision-pipeline project descripti
 - Added a working link to Fiona's GitHub profile from the featured project card.
 
 These changes were made to the live portfolio; project-specific proof links and real human feedback remain future additions. The supplied links and claims were not invented.
-
