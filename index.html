@@ -673,6 +673,19 @@ footer{
   .btn{font-size:.4rem;padding:.8rem 1.1rem}
 }
 
+
+@media(max-width:480px){
+  :root{--muted:#8aa4bf}
+  .hero-sub,.about-text p,.pcard-desc,.contact-sub,.task-demo-copy{font-size:1rem;line-height:1.75;color:#b6c9dc}
+  .btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;font-size:.55rem}
+  .ham{min-width:44px;min-height:44px;align-items:center;justify-content:center}
+  .mob-menu a{font-size:.9rem}
+  .task-form input,.task-form select{min-height:44px;font-size:1rem}
+  .task-row input[type=checkbox]{width:24px;height:24px}
+  .task-delete{min-height:44px;font-size:.5rem}
+  .task-label{font-size:.95rem}
+}
+
 /* ─── INTERACTIVE TASK QUEUE DEMO ─────────── */
 .task-demo{
   max-width:900px;margin:0 auto;background:var(--panel);
@@ -840,7 +853,6 @@ footer{
             <span class="tag">CameraX</span>
             <span class="tag">On-Device ML</span>
           </div>
-          <a href="#" class="pcard-link">VIEW PROJECT →</a>
         </div>
       </div>
       <div class="feat-visual">
@@ -873,7 +885,6 @@ footer{
           <span class="tag">Game Loop</span>
           <span class="tag">Swing / AWT</span>
         </div>
-        <a href="#" class="pcard-link" style="color:var(--pink)">VIEW PROJECT →</a>
       </div>
     </div>
 
@@ -893,7 +904,6 @@ footer{
           <span class="tag">Data Processing</span>
           <span class="tag">Deployment</span>
         </div>
-        <a href="#" class="pcard-link" style="color:var(--yellow)">VIEW PROJECT →</a>
       </div>
     </div>
 
