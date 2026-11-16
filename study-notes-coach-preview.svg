@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Study Notes Coach — Shaik Fiona Ali</title>
+  <desc id="desc">A case study of a private study assistant designed to answer from course notes and cite its sources.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05080f"/><stop offset="1" stop-color="#0b1120"/></linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#173044" stroke-width="1"/></pattern>
+    <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="2" fill="#00ffe7" opacity=".035"/></pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/><rect width="1200" height="630" fill="url(#grid)" opacity=".6"/><rect width="1200" height="630" fill="url(#scan)"/>
+  <path d="M72 78H1128" stroke="#00ffe7" stroke-width="3"/>
+  <text x="80" y="128" fill="#00ffe7" font-family="monospace" font-size="20" font-weight="700" letter-spacing="4">FLYRANK · AI FLUENCY PROJECT</text>
+  <text x="80" y="258" fill="#d4e5f7" font-family="monospace" font-size="58" font-weight="800">STUDY NOTES COACH</text>
+  <text x="84" y="322" fill="#00ffe7" font-family="Arial, sans-serif" font-size="28" font-weight="700">SOURCE-GROUNDED STUDY ASSISTANT</text>
+  <text x="84" y="374" fill="#8aa6c3" font-family="Arial, sans-serif" font-size="22">Answers from course notes, with citations and a check before filling gaps.</text>
+  <rect x="84" y="438" width="290" height="54" rx="4" fill="#0b1825" stroke="#00ffe7" stroke-width="2"/><text x="108" y="473" fill="#d4e5f7" font-family="monospace" font-size="17" font-weight="700">SOURCE CITATIONS</text>
+  <rect x="394" y="438" width="300" height="54" rx="4" fill="#0b1825" stroke="#9b5cff" stroke-width="2"/><text x="418" y="473" fill="#d4e5f7" font-family="monospace" font-size="17" font-weight="700">MISSING-SOURCE GUARD</text>
+  <rect x="714" y="438" width="224" height="54" rx="4" fill="#0b1825" stroke="#ff2d78" stroke-width="2"/><text x="740" y="473" fill="#d4e5f7" font-family="monospace" font-size="17" font-weight="700">3 OBSERVED RUNS</text>
+  <circle cx="1040" cy="310" r="82" fill="#101828" stroke="#00ffe7" stroke-width="2"/><circle cx="1040" cy="310" r="55" fill="none" stroke="#9b5cff" stroke-width="2"/><path d="M1009 293h62M1009 310h46M1009 327h54" stroke="#00ffe7" stroke-width="6" stroke-linecap="square"/><circle cx="1040" cy="310" r="7" fill="#ff2d78"/>
+  <path d="M84 548H1118" stroke="#162033" stroke-width="1"/><text x="84" y="582" fill="#3d5a7a" font-family="monospace" font-size="15" letter-spacing="3">SHAIK FIONA ALI · CASE STUDY</text>
+</svg>
