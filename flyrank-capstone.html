@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which FlyRank Content Items Deserve Review First? | Shaik Fiona Ali</title>
+<meta name="description" content="A client-held-out comparison of a logistic review ranking and a freshness-and-volume rule on an anonymized FlyRank starter dataset.">
+<meta name="author" content="Shaik Fiona Ali">
+<link rel="canonical" href="https://fiona-ali.github.io/flyrank-capstone.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Which FlyRank Content Items Deserve Review First?">
+<meta property="og:description" content="A careful, reproducible search-intelligence capstone on refresh opportunity scoring.">
+<meta property="og:url" content="https://fiona-ali.github.io/flyrank-capstone.html">
+<meta name="theme-color" content="#07111c">
+<style>
+:root{color-scheme:dark;--bg:#07111c;--surface:#0d1a27;--surface2:#102232;--line:#234154;--text:#eaf4f5;--muted:#a9bdc6;--cyan:#47e4d1;--blue:#55a8ff;--coral:#ff9d83;--yellow:#f8de67;--max:1120px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 12% 0%,#123345 0,transparent 33rem),var(--bg);color:var(--text);font:16px/1.7 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--cyan);text-underline-offset:3px}a:hover{color:white}.wrap{width:min(calc(100% - 38px),var(--max));margin:auto}
+.top{border-bottom:1px solid var(--line);background:#07111cdd;position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}.nav{height:58px;display:flex;align-items:center;justify-content:space-between;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase}.brand{font-weight:800;color:var(--cyan);text-decoration:none}.nav a:not(.brand){color:var(--muted);text-decoration:none;margin-left:22px}
+.hero{padding:76px 0 50px;border-bottom:1px solid var(--line)}.eyebrow{color:var(--cyan);font-size:.76rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.hero h1{font-size:clamp(2.25rem,5.4vw,4.5rem);line-height:1.06;letter-spacing:-.045em;max-width:940px;margin:18px 0}.dek{font-size:1.12rem;color:#c4d6dc;max-width:760px}.byline{display:flex;flex-wrap:wrap;gap:10px 25px;margin-top:28px;color:var(--muted);font-size:.9rem}.pill{border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:#d4e5e7;background:#0c1b27}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:52px;padding:34px 0 80px}.article{min-width:0}.toc{position:sticky;top:86px;align-self:start;border:1px solid var(--line);border-radius:14px;background:#0b1925;padding:20px;font-size:.9rem}.toc strong{display:block;margin-bottom:10px}.toc a{display:block;color:var(--muted);padding:4px 0;text-decoration:none}.toc a:hover{color:var(--cyan)}section{scroll-margin-top:82px;margin:0 0 48px}h2{font-size:1.55rem;line-height:1.2;letter-spacing:-.02em;margin:0 0 16px}h3{font-size:1.05rem;margin:22px 0 8px}p{margin:0 0 14px;color:#d2e0e4}.abstract{background:linear-gradient(135deg,#0d2630,#101b2b);border:1px solid #26766f;border-radius:16px;padding:24px}.abstract p:last-child{margin:0}.callout{padding:16px 19px;border-left:3px solid var(--yellow);background:#172231;color:#dce7e7;border-radius:0 10px 10px 0}.small{font-size:.9rem;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}.stat{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:15px}.stat b{display:block;color:var(--cyan);font-size:1.45rem;line-height:1.3}.stat span{font-size:.78rem;color:var(--muted)}
+figure{margin:24px 0;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}figure svg{width:100%;height:auto;display:block}figcaption{margin-top:12px;color:var(--muted);font-size:.86rem}.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:10px;color:var(--muted);font-size:.82rem}.key{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}.key.model{background:var(--cyan)}.key.rule{background:#899baa}.key.ref{width:18px;height:0;border-top:2px dashed var(--coral);border-radius:0}
+table{border-collapse:collapse;width:100%;margin:20px 0;background:#0d1925;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:.94rem}th,td{padding:12px 13px;text-align:left;border-bottom:1px solid var(--line)}th{background:#112534;color:#d9eeee}td.num{text-align:right;font-variant-numeric:tabular-nums}tr:last-child td{border-bottom:0}.delta{color:var(--cyan);font-weight:700}
+ol,ul{padding-left:22px;color:#d2e0e4}li{padding:0 0 10px 4px}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#132431;border:1px solid var(--line);border-radius:5px;padding:1px 5px;color:#b9eee7;font-size:.9em}.links{display:grid;grid-template-columns:1fr 1fr;gap:10px}.linkcard{padding:13px;border:1px solid var(--line);border-radius:10px;background:var(--surface);text-decoration:none}.linkcard span{display:block;color:var(--muted);font-size:.78rem}.foot{border-top:1px solid var(--line);padding:26px 0 38px;color:var(--muted);font-size:.85rem}
+@media(max-width:850px){.grid{grid-template-columns:1fr;gap:12px}.toc{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}.toc strong{grid-column:1/-1}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.wrap{width:min(calc(100% - 26px),var(--max))}.nav{height:52px}.nav a:not(.brand){margin-left:12px;font-size:.72rem}.hero{padding:52px 0 34px}.hero h1{font-size:2.45rem}.grid{padding-top:23px}.abstract{padding:18px}.toc{grid-template-columns:1fr 1fr;padding:14px}.stats{gap:8px}.stat{padding:12px}table{font-size:.82rem}th,td{padding:9px 7px}.links{grid-template-columns:1fr}figure{padding:10px}.foot{padding-bottom:25px}}
+@media print{body{background:white;color:#16232d}.top,.toc{display:none}.hero{padding:24px 0}.grid{display:block;padding:18px 0}.abstract,figure,.stat,table,.linkcard{background:white;color:#17232c;border-color:#bbb}.abstract p,p,li,td,figcaption,.small{color:#293944}a{color:#006b66}.foot{color:#394b54}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap nav"><a class="brand" href="https://fiona-ali.github.io/">SFA.EXE</a><nav aria-label="Primary"><a href="#results">Results</a><a href="#recommendations">Actions</a><a href="#reproducibility">Reproduce</a><a href="https://fiona-ali.github.io/">Portfolio</a></nav></div></header>
+<div class="wrap">
+<header class="hero">
+<div class="eyebrow">FlyRank · Search Intelligence · ML Capstone</div>
+<h1>Which content items should an editor review first?</h1>
+<p class="dek">A client-held-out comparison of a metadata-based review ranking with a freshness-and-volume rule. The goal is a careful triage aid—not an automatic refresh decision.</p>
+<div class="byline"><span>Shaik Fiona Ali</span><span>Refresh / Content Opportunity Scoring</span><span class="pill">16 November 2026</span></div>
+</header>
+<div class="grid">
+<main class="article">
+<section id="abstract" class="abstract">
+<h2>Abstract</h2>
+<p>Which anonymized content items should an editor review first for a possible refresh? Using the repository’s 30,000-row starter extract (44 columns, 32 client groups), I ranked the 22,006 rows meeting a 100-impression eligibility floor. A Logistic Regression model using nine content metadata fields was evaluated against the Week-4 freshness-and-volume rule on the same fixed client-held-out split. The model reached Precision@50 of 0.720 and average precision 0.632, compared with 0.380 and 0.521 for the rule; the held-out proxy base rate was 0.577. These results support a human review shortlist on this snapshot only: they do not establish future decline, refresh value, or a causal effect.</p>
+</section>
+<section id="problem">
+<h2>1. The decision this supports</h2>
+<p>Editors have limited time to inspect pages that may deserve attention. This experiment asks whether a simple learned ranking can make the top of that review queue more useful than a transparent freshness-and-volume rule.</p>
+<p>The unit is one pseudonymized content item. The output is a ranking score. The action is manual review in an authorized internal system. A false positive costs review time; an item missed by the list could be overlooked. Neither score is an instruction to edit, remove, or publish content.</p>
+</section>
+<section id="data">
+<h2>2. Data and scope</h2>
+<div class="stats">
+<div class="stat"><b>30,000</b><span>starter-extract rows</span></div>
+<div class="stat"><b>44</b><span>columns in the extract</span></div>
+<div class="stat"><b>32</b><span>pseudonymous client groups</span></div>
+<div class="stat"><b>22,006</b><span>eligible rows, 100+ impressions</span></div>
+</div>
+<p>The analysis uses the anonymized starter CSV checked into the internship repository: one row per content item. The available measures are rolling aggregates over a trailing 90-day period; the target compares the latest 30 days with the preceding 30 days. This CSV contains no calendar timestamp for the snapshot, so exact calendar coverage is unavailable. This paper does not claim to have queried the full hosted warehouse.</p>
+<p>Eligibility is defined as <span class="code">impressions_90d ≥ 100</span>. Pseudonymous identifiers are used only to keep client groups apart during validation. They are not model features. The model also excludes the target, label-derived fields, and impression, click, session, position, and engagement measures.</p>
+</section>
+<section id="method">
+<h2>3. Method</h2>
+<p><strong>Target proxy.</strong> A row is labeled “down” when <span class="code">trend_direction == down</span>. This field describes the latest-versus-previous 30-day comparison in the snapshot; it is not a future outcome.</p>
+<p><strong>Model.</strong> Logistic Regression ranks eligible rows using nine metadata fields: search volume, competition, CPC, word count, character count, content age, days since last update, content type, and main intent. Numeric values use median imputation, missingness indicators, and standardization; categorical values use an explicit missing category and one-hot encoding.</p>
+<p><strong>Validation.</strong> A fixed GroupShuffleSplit (25% test fraction, seed 42) keeps whole clients out of training. The split contains 17,396 training rows from 22 clients and 4,610 test rows from 8 disjoint clients.</p>
+<p><strong>Comparator.</strong> The historical Week-4 rule is <span class="code">log1p(impressions_90d) × min(days_since_last_update, 180) / 180</span>. Both rankings use the same held-out rows. Since the 90-day impression total overlaps the target windows, this rule is disclosed as a non-prospective historical comparator, not a leakage-safe estimate of future performance.</p>
+</section>
+<section id="results">
+<h2>4. Results on the same held-out clients</h2>
+<p>The test proxy base rate is 0.577. Precision@K is the share of rows labeled “down” among the first K ranked rows. Average precision summarizes ranking across thresholds; ROC AUC compares ordering across positive and negative rows.</p>
+<table>
+<thead><tr><th>Measure</th><th>Logistic model</th><th>Week-4 rule</th><th>Reference</th></tr></thead>
+<tbody>
+<tr><td>Precision@10</td><td class="num">0.600</td><td class="num">0.500</td><td class="num">0.577 base rate</td></tr>
+<tr><td>Precision@50</td><td class="num">0.720</td><td class="num">0.380</td><td class="num">0.577 base rate</td></tr>
+<tr><td>Average precision</td><td class="num">0.632</td><td class="num">0.521</td><td class="num">0.577 base rate</td></tr>
+<tr><td>ROC AUC</td><td class="num">0.571</td><td class="num">0.418</td><td class="num">0.500 random</td></tr>
+</tbody></table>
+<figure>
+<svg role="img" aria-labelledby="chart-title chart-desc" viewBox="0 0 960 310" xmlns="http://www.w3.org/2000/svg">
+<title id="chart-title">Model and rule metrics on one client-held-out split</title>
+<desc id="chart-desc">The logistic model reaches 0.60 precision at 10, 0.72 at 50, 0.632 average precision, and 0.571 ROC AUC. The Week-4 rule reaches 0.50, 0.38, 0.521, and 0.418. Dashed references are the 0.577 proxy prevalence for ranking measures and 0.5 for ROC AUC.</desc>
+<rect width="960" height="310" rx="10" fill="#0d1a27"/>
+<g stroke="#294050" stroke-width="1"><path d="M50 50H930M50 145H930M50 240H930"/></g>
+<g fill="#a9bdc6" font-family="system-ui,sans-serif" font-size="12"><text x="18" y="54">1.0</text><text x="18" y="149">0.5</text><text x="18" y="244">0</text>
+<text x="160" y="276" text-anchor="middle">Precision@10</text><text x="380" y="276" text-anchor="middle">Precision@50</text><text x="600" y="276" text-anchor="middle">Average precision</text><text x="820" y="276" text-anchor="middle">ROC AUC</text></g>
+<g stroke="#ff9d83" stroke-dasharray="5 5" stroke-width="2"><path d="M75 130.4H245M295 130.4H465M515 130.4H685M735 145H905"/></g>
+<g fill="#47e4d1"><rect x="112" y="126" width="48" height="114" rx="4"/><rect x="332" y="103.2" width="48" height="136.8" rx="4"/><rect x="552" y="119.9" width="48" height="120.1" rx="4"/><rect x="772" y="131.5" width="48" height="108.5" rx="4"/></g>
+<g fill="#899baa"><rect x="164" y="145" width="48" height="95" rx="4"/><rect x="384" y="167.8" width="48" height="72.2" rx="4"/><rect x="604" y="141" width="48" height="99" rx="4"/><rect x="824" y="160.6" width="48" height="79.4" rx="4"/></g>
+<g fill="#eaf4f5" font-family="system-ui,sans-serif" font-size="12" font-weight="700" text-anchor="middle"><text x="136" y="116">0.600</text><text x="188" y="135">0.500</text><text x="356" y="94">0.720</text><text x="408" y="159">0.380</text><text x="576" y="111">0.632</text><text x="628" y="132">0.521</text><text x="796" y="123">0.571</text><text x="848" y="152">0.418</text></g>
+<g font-family="system-ui,sans-serif" font-size="12" fill="#c5d5db"><rect x="316" y="292" width="12" height="12" rx="3" fill="#47e4d1"/><text x="335" y="302">Logistic model</text><rect x="465" y="292" width="12" height="12" rx="3" fill="#899baa"/><text x="484" y="302">Week-4 rule</text><path d="M585 298H609" stroke="#ff9d83" stroke-width="2" stroke-dasharray="5 4"/><text x="616" y="302">Base-rate / random reference</text></g>
+</svg>
+<figcaption>Same 4,610 held-out rows from 8 unseen client groups. Dashed references show the test proxy base rate for the ranking measures and 0.50 for ROC AUC. Higher values are better for each metric; the rule’s ROC AUC is below its random reference.</figcaption>
+</figure>
+<p>The largest practical gap is Precision@50: 0.720 for the model, 0.380 for the rule, and 0.577 for the test base rate. The model’s Precision@10 is only 0.023 above base rate. Average precision improves by 0.111 over the rule, while model ROC AUC is 0.571. These are directional results for one grouped split—not evidence of future performance.</p>
+</section>
+<section id="limitations">
+<h2>5. Limitations and honest framing</h2>
+<ul>
+<li>The target describes a trailing comparison; it does not label what happens after a refresh.</li>
+<li>One fixed grouped split cannot show stability across time, seeds, or all clients.</li>
+<li>The 100-impression filter limits conclusions to that selected population.</li>
+<li>The rule comparator includes a 90-day impression measure overlapping the target windows.</li>
+<li>No experiment measured whether a refresh changes performance, nor were editorial cost and realized value measured.</li>
+<li>This starter extract does not support claims about the full warehouse or Google’s ranking algorithm.</li>
+</ul>
+<div class="callout"><strong>Claim boundary:</strong> this model can be discussed as a directional, decision-support ranking on a specific anonymized snapshot. It cannot be described as proving future decline or the causal value of a refresh.</div>
+</section>
+<section id="recommendations">
+<h2>6. Ranked recommendations</h2>
+<ol>
+<li><strong>Use the top 50 as a review queue, not an edit instruction.</strong> The observed Precision@50 was 0.720 against a 0.577 proxy base rate on one split.</li>
+<li><strong>Have an editor verify context internally.</strong> Confirm current intent and page state in the authorized system before deciding whether any change is appropriate.</li>
+<li><strong>Test prospectively before operational use.</strong> Freeze a cutoff, define a non-overlapping future outcome, preserve time and client separation, and compare against a simple baseline on identical rows.</li>
+<li><strong>Measure review outcomes.</strong> Record editor dispositions and future metrics; set any pause or retraining thresholds only after independent time-window validation.</li>
+</ol>
+</section>
+<section id="reproducibility">
+<h2>7. Reproducibility</h2>
+<p>The notebook uses seed 42, repeats the grouped split, compares both rankings on the same rows, checks the result against the Week-7 metrics receipt, and saves aggregate metrics and the chart. It does not print or commit row-level ranked records.</p>
+<div class="links">
+<a class="linkcard" href="https://github.com/Fiona-ali/flyrank-ml-internship"><strong>Internship repository</strong><span>Code, assignment work, and data-use notes</span></a>
+<a class="linkcard" href="https://github.com/Fiona-ali/flyrank-ml-internship/blob/main/work/notebooks/capstone.ipynb"><strong>Capstone notebook</strong><span>Re-run the analysis in Colab or Jupyter</span></a>
+<a class="linkcard" href="https://github.com/Fiona-ali/flyrank-ml-internship/blob/main/work/notebooks/w05_model.ipynb"><strong>Modeling notebook</strong><span>Week-5 model and same-split baseline comparison</span></a>
+<a class="linkcard" href="https://github.com/Fiona-ali/flyrank-ml-internship/blob/main/work/notebooks/w06_validation_audit.ipynb"><strong>Validation audit</strong><span>Grouped versus row-random validation comparison</span></a>
+<a class="linkcard" href="https://github.com/Fiona-ali/flyrank-ml-internship/blob/main/work/notebooks/w07_action_playbook.ipynb"><strong>Action playbook</strong><span>Human-review queue design and safeguards</span></a>
+<a class="linkcard" href="https://github.com/Fiona-ali/flyrank-ml-internship/blob/main/work/outputs/capstone_metrics.json"><strong>Aggregate metrics</strong><span>Machine-readable metric receipt</span></a>
+</div>
+<p class="small">To reproduce: clone Fiona’s repository, install its requirements.txt, open work/notebooks/capstone.ipynb, and run all cells. The exact deployed URL is recorded in submission/paper_url.txt.</p>
+</section>
+<section id="credit">
+<h2>8. Acknowledgments and data credit</h2>
+<p>Built on the <a href="https://flyrank.ai">FlyRank ML Internship dataset</a>. The public analysis uses only the anonymized starter extract committed in Fiona’s internship repository. No private client names, domains, URLs, query text, credentials, or raw ranked rows appear on this page.</p>
+</section>
+</main>
+<aside class="toc" aria-label="On this page"><strong>On this page</strong><a href="#abstract">Abstract</a><a href="#problem">Problem</a><a href="#data">Data & scope</a><a href="#method">Method</a><a href="#results">Results</a><a href="#limitations">Limitations</a><a href="#recommendations">Recommendations</a><a href="#reproducibility">Reproducibility</a><a href="#credit">Data credit</a></aside>
+</div>
+<footer class="foot"><div class="wrap">Shaik Fiona Ali · <a href="https://fiona-ali.github.io/">Portfolio</a> · Built on the FlyRank ML Internship dataset</div></footer>
+</div>
+</body>
+</html>
