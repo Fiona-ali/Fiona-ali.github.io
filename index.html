@@ -1058,7 +1058,7 @@ footer{
 <!-- FOOTER -->
 <footer>
   <span class="foot-l">© 2025 SHAIK FIONA ALI</span>
-  <div class="foot-r"><span class="online-dot"></span>ONLINE &amp; AVAILABLE</div>
+  <div class="foot-r"><span class="online-dot"></span>ONLINE &amp; AVAILABLE <span id="sitePageViews" aria-live="polite">· Home page loads: counting…</span></div>
 </footer>
 
 <script>
@@ -1166,6 +1166,21 @@ document.querySelectorAll('.rv').forEach(function(el){ obs.observe(el); });
   render();
 })();
 
+</script>
+<script>
+/* Privacy-light, aggregate home-page counter. The key and total are public. */
+(function(){
+  var display=document.getElementById('sitePageViews');
+  if(!display) return;
+  var endpoint='https://countapi.mileshilliard.com/api/v1/hit/fiona_ali_portfolio_home_loads_2026_11';
+  fetch(endpoint,{cache:'no-store'})
+    .then(function(response){if(!response.ok) throw new Error('counter unavailable');return response.json();})
+    .then(function(data){
+      var total=Number(data.value);
+      display.textContent=Number.isFinite(total)?'· Home page loads (approx.): '+new Intl.NumberFormat().format(total):'· Home page count unavailable';
+    })
+    .catch(function(){display.textContent='· Home page count unavailable';});
+})();
 </script>
 </body>
 </html>
