@@ -7,6 +7,10 @@
 **Repository:** https://github.com/Fiona-ali/flyrank-ml-internship  
 **Reminder:** 23 November 2026, 7:00 PM IST
 
+## Keep the portfolio build context
+
+Keep Fiona's existing portfolio Claude Project, including its voice, stack notes, and identity kit, as the drafting context for future case studies. The project supports the writing process; facts and metrics in the published case must still be checked against the source paper and repository.
+
 ## Where the next case will go
 
 Add one new project card inside the existing Work / Selected Projects section (id: projects) of index.html, below the current featured subject-tracking project. The card will be titled Google Search Ranking & Discoverability Capstone and will link to the public research paper. The paper remains the detailed write-up; the card will give a short case summary and link to the reproducible notebook in Fiona's internship repository.
